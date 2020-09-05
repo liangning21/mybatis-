@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lihuan.com.dao.AddressCodeMapper">
+  <resultMap id="BaseResultMap" type="cn.lihuan.com.pojo.AddressCode">
+    <id column="ac_id" jdbcType="INTEGER" property="acId" />
+    <result column="ac_citycode" jdbcType="VARCHAR" property="acCitycode" />
+    <result column="ac_adcode" jdbcType="VARCHAR" property="acAdcode" />
+    <result column="ac_name" jdbcType="VARCHAR" property="acName" />
+    <result column="ac_center" jdbcType="VARCHAR" property="acCenter" />
+    <result column="ac_level" jdbcType="VARCHAR" property="acLevel" />
+    <result column="ac_parentCode" jdbcType="VARCHAR" property="acParentcode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ac_id, ac_citycode, ac_adcode, ac_name, ac_center, ac_level, ac_parentCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from address_code
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from address_code
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.lihuan.com.pojo.AddressCode">
+    insert into address_code (ac_id, ac_citycode, ac_adcode, 
+      ac_name, ac_center, ac_level, 
+      ac_parentCode)
+    values (#{acId,jdbcType=INTEGER}, #{acCitycode,jdbcType=VARCHAR}, #{acAdcode,jdbcType=VARCHAR}, 
+      #{acName,jdbcType=VARCHAR}, #{acCenter,jdbcType=VARCHAR}, #{acLevel,jdbcType=VARCHAR}, 
+      #{acParentcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.lihuan.com.pojo.AddressCode">
+    insert into address_code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="acId != null">
+        ac_id,
+      </if>
+      <if test="acCitycode != null">
+        ac_citycode,
+      </if>
+      <if test="acAdcode != null">
+        ac_adcode,
+      </if>
+      <if test="acName != null">
+        ac_name,
+      </if>
+      <if test="acCenter != null">
+        ac_center,
+      </if>
+      <if test="acLevel != null">
+        ac_level,
+      </if>
+      <if test="acParentcode != null">
+        ac_parentCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="acId != null">
+        #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="acCitycode != null">
+        #{acCitycode,jdbcType=VARCHAR},
+      </if>
+      <if test="acAdcode != null">
+        #{acAdcode,jdbcType=VARCHAR},
+      </if>
+      <if test="acName != null">
+        #{acName,jdbcType=VARCHAR},
+      </if>
+      <if test="acCenter != null">
+        #{acCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="acLevel != null">
+        #{acLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="acParentcode != null">
+        #{acParentcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.lihuan.com.pojo.AddressCode">
+    update address_code
+    <set>
+      <if test="acCitycode != null">
+        ac_citycode = #{acCitycode,jdbcType=VARCHAR},
+      </if>
+      <if test="acAdcode != null">
+        ac_adcode = #{acAdcode,jdbcType=VARCHAR},
+      </if>
+      <if test="acName != null">
+        ac_name = #{acName,jdbcType=VARCHAR},
+      </if>
+      <if test="acCenter != null">
+        ac_center = #{acCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="acLevel != null">
+        ac_level = #{acLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="acParentcode != null">
+        ac_parentCode = #{acParentcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.lihuan.com.pojo.AddressCode">
+    update address_code
+    set ac_citycode = #{acCitycode,jdbcType=VARCHAR},
+      ac_adcode = #{acAdcode,jdbcType=VARCHAR},
+      ac_name = #{acName,jdbcType=VARCHAR},
+      ac_center = #{acCenter,jdbcType=VARCHAR},
+      ac_level = #{acLevel,jdbcType=VARCHAR},
+      ac_parentCode = #{acParentcode,jdbcType=VARCHAR}
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </update>
+</mapper>
